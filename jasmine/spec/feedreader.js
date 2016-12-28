@@ -166,6 +166,13 @@ $(function() {
      * --DONE--
      */
     it('is hidden by default', function() {
+      /*
+       * I'm using this approach instead of:
+       * `expect(bodyReference.hasClass('menu-hidden')).toBe(true)`
+       * because the latter provides a dull error message:
+       * 'Expected false to be true'
+       * Which is not very informative.
+      */
       expect(getClassesAsArray(bodyReference)).toContain('menu-hidden');
     });
 
@@ -175,7 +182,7 @@ $(function() {
       * clicked and does it hide when clicked again.
       *
       * --DONE--
-      */
+      
     it('toggles when clicked', function() {
       menuIcon.click();
       expect(getClassesAsArray(bodyReference)).not.toContain('menu-hidden');
