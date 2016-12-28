@@ -137,28 +137,53 @@ $(function() {
 
 
   // Write a new test suite named "The menu" --DONE--
-  // describe('The menu', function() {
-  //   var bodyClassList;
+  describe('The menu', function() {
+    // Here we hold a reference to the body element.
+    var bodyReference;
 
-  //   beforeEach(function() {
-  //     bodyClassList = document.getElementsByTagName('body').classList;
-  //   });
+    // Hold reference to menu icon.
+    var menuIcon;
 
-    /* TODO: Write a test that ensures the menu element is
+    /*
+     * This function returns a list of all classes of a given element as array.
+     */
+    var getClassesAsArray = function(JQelement) {
+      // Return all classes of passed JQelement as array, this way we get a 
+      // further readable error message if the test fails.
+      return JQelement.attr('class').split(' ');
+    };
+
+    beforeAll(function() {
+      bodyReference = $('body');
+      menuIcon = $('.menu-icon-link');
+    });
+
+    /* Write a test that ensures the menu element is
      * hidden by default. You'll have to analyze the HTML and
      * the CSS to determine how we're performing the
      * hiding/showing of the menu element.
+     *
+     * --DONE--
      */
-    // it('is hidden by default', function() {
-    //   console.log(bodyClassList);
-    // });
+    it('is hidden by default', function() {
+      expect(getClassesAsArray(bodyReference)).toContain('menu-hidden');
+    });
 
-     /* TODO: Write a test that ensures the menu changes
+     /* Write a test that ensures the menu changes
       * visibility when the menu icon is clicked. This test
       * should have two expectations: does the menu display when
       * clicked and does it hide when clicked again.
+      *
+      * --DONE--
       */
-  // });
+    it('toggles when clicked', function() {
+      menuIcon.click();
+      expect(getClassesAsArray(bodyReference)).not.toContain('menu-hidden');
+
+      menuIcon.click();
+      expect(getClassesAsArray(bodyReference)).toContain('menu-hidden');
+    });
+  });
 
   /* TODO: Write a new test suite named "Initial Entries" */
 
